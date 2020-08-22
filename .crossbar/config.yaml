@@ -2,6 +2,7 @@ version: 2
 controller: {}
 workers:
 - type: router
+
   realms:
   - name: main
     roles:
@@ -11,25 +12,19 @@ workers:
         match: exact
         allow:
           call: true
-        disclose:
-          caller: false
-          publisher: false
-        cache: true
     - name: backend
       permissions:
       - uri: 'org.deskconn.url.open'
         match: exact
         allow:
           register: true
-        disclose:
-          caller: false
-          publisher: false
-        cache: true
+
   components:
   - type: class
     realm: main
     role: backend
     classname: provider.OpenerSession
+
   transports:
   - type: websocket
     endpoint:
